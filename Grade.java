@@ -1,9 +1,12 @@
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
+
 public class Grade {
-    final private String letterGrade;
-    final private String sectionNumber;
-    final private String yearTaken;
-    final private String school;
-    final private Course course;
+    final private String LetterGrade;
+    final private String SectionNumber;
+    final private String YearTaken;
+    final private String School;
+    final private Course Course;
+    private Double gradePoints;
 
     public Grade(String letterGrade, String sectionNumber, String yearTaken, String school, Course course) {
         this.letterGrade = letterGrade;
@@ -11,6 +14,7 @@ public class Grade {
         this.yearTaken = yearTaken;
         this.school = school;
         this.course = course;
+        this.gradePoints = this.getGradePoint();
     }
 
     /**
@@ -46,6 +50,45 @@ public class Grade {
      */
     public Course getCourse() {
         return course;
+    }
+
+    public double getGradePoint() {
+        Double numericalGrade;
+        switch (ths.getLetterGrade()) {
+            case "A+":
+                numericalGrade = 4.3;
+                break;
+            case "A":
+                numericalGrade = 4.0;
+                break;
+            case "A-":
+                numericalGrade = 3.7;
+                break;
+            case "B+":
+                numericalGrade = 3.3;
+                break;
+            case "B":
+                numericalGrade = 3.0;
+                break;
+            case "B-":
+                numericalGrade = 2.7;
+                break;
+            case "C+":
+                numericalGrade = 2.3;
+                break;
+            case "C":
+                numericalGrade = 2.0;
+                break;
+            case "D":
+                numericalGrade = 1.0;
+                break;
+            case "F":
+                numericalGrade = 4.0;
+                break;
+            default:
+                return -1;
+        }
+        return (numericalGrade * course.getCorseCredit());
     }
 
 }
