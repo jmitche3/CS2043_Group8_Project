@@ -24,7 +24,7 @@ public class Registrar {
 	public void loadTranscripts(String fileName) {
 		File folder = new File(currentPath);
 		File[] listOfFiles = folder.listFiles();
-		Pattern p = Pattern.compile("\\d{4}.*?\\.csv");
+		Pattern p = Pattern.compile("\\d{4}.*?\\.txt");
 		Transcript currentTranscript = null;
 
 		for (File file : listOfFiles) {

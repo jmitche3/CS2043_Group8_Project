@@ -25,7 +25,7 @@ public class Transcript
 
 		while (line != null) 
 		{ 
-			gradeFields = line.split(",");
+			gradeFields = line.split("\\s{2,}");
 			
 			// Fill in member variables of transcript.
 			courseNumber = gradeFields[0];
