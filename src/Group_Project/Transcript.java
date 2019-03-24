@@ -35,8 +35,8 @@ public class Transcript
 			courseCreditHours = gradeFields[4];
 			courseTerm = gradeFields[5];
 			
-			course = new Course(courseNumber, courseSection, courseName, courseCreditHours);
-			grade = new Grade(letterGrade, courseSection, courseTerm, course);
+			//course = new Course(courseNumber, courseSection, courseName, courseCreditHours);
+			//grade = new Grade(letterGrade, courseSection, courseTerm, course);
 			
 			transcript.grades.add(grade);
 
