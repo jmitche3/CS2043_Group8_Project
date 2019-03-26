@@ -1,0 +1,26 @@
+import java.util.*;
+class CourseArea{
+	private String name;
+	//private ArrayList<Course> courses;
+	private ArrayList<String> courses;
+	
+	public CourseArea(String nameIn){
+		name=nameIn;
+		//courses=new ArrayList<Course>();
+		courses=new ArrayList<String>();
+	}
+	
+	public void addCourse(String courseIn){
+		//Course temp=Registrar.getCourse(courseIn);
+		//courses.add(temp);
+		courses.add(courseIn);
+	}
+	
+	public String toString(){
+		String temp=name+":";
+		for(String tCourse:courses){
+			temp+=" "+tCourse;
+		}
+		return temp;
+	}
+}
