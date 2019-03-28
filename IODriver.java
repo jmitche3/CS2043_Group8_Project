@@ -207,4 +207,26 @@ public class IODriver{
 			//HANDLE
 		}
 	}
+	
+	public static void writeRaw(Set<Course> courses, ArrayList<ArrayList<int>> counts, GradeSchema scheme){
+		PrintWriter out;
+		
+		try{
+			File output=new File(target);
+			out=new PrintWriter(output);
+			
+			out.print("Course");
+			for(String title : scheme.getNames()){
+				out.print(","+title);
+			}
+			for(int i=0;i<courses.size();i++){
+				out.print("\n"+courses.get(i).getName());
+				for(int j:counts.get(i)){
+					out.print(","+j);
+				}
+			}
+			out.close();
+		}
+	}
+	
 }
