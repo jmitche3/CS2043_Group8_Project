@@ -189,4 +189,22 @@ public class IODriver{
 			System.out.println(test);
 		//}
 	}
+	
+	public static void writeTranscript(Transcript student, String target){
+		PrintWriter out;
+		
+		try{
+			File output=new File(target);
+			out=new PrintWriter(output);
+			
+			out.println(""+student.getID()+"  "+student.getProgram());
+			ArrayList grades=student.getGrades();
+			for(Grade g : grades){
+				out.println(g);
+			}
+			out.close();
+		}catch(IOException e){
+			//HANDLE
+		}
+	}
 }

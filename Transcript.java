@@ -26,6 +26,16 @@ class Transcript{
 		return grades;
 	}
 	
+	public int getID(){
+		return studID;
+	}
+	public String getProgram(){
+		return program;
+	}
+	public byte getProgYear(){
+		return progYear;
+	}
+	
 	public String toString(){
 		String tS=""+studID+","+program+"\n";
 		for(int i=0;i<grades.size();i++){
