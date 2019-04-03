@@ -1,60 +1,71 @@
 package Group_Project;
 
 public class Grade {
-    final private String LetterGrade;
-    final private String SectionNumber;
-    final private String YearTaken;
-    final private String School;
-    final private Course Course;
+    final private String letterGrade;
+    final private String sectionNumber;
+    final private String yearTaken;
+    private String school;
+    final private Course course;
     private Double gradePoints;
 
-    public Grade(String letterGrade, String sectionNumber, String yearTaken, String school, Course course) {
-        this.LetterGrade = letterGrade;
-        this.SectionNumber = sectionNumber;
-        this.YearTaken = yearTaken;
-        this.School = school;
-        this.Course = course;
-        this.gradePoints = this.getGradePoint();
+    public Grade(String letterGradeIn, String courseSectionIn, String courseTermIn, Course course) 
+    {
+        this.letterGrade = letterGradeIn;
+        this.sectionNumber = courseSectionIn;
+        this.yearTaken = courseTermIn;
+        this.school = this.getSchool();
+        this.course = course;
+        this.gradePoints = this.calculateGradePoint();
     }
 
     /**
      * @return the letterGrade
      */
-    public String getLetterGrade() {
-        return LetterGrade;
+    public String getLetterGrade() 
+    {
+        return letterGrade;
     }
 
     /**
      * @return the sectionNumber
      */
-    public String getSectionNumber() {
-        return SectionNumber;
+    public String getSectionNumber() 
+    {
+        return sectionNumber;
     }
 
     /**
      * @return the yearTaken
      */
-    public String getYearTaken() {
-        return YearTaken;
+    public String getYearTaken() 
+    {
+    	String currentYear;
+    	currentYear = yearTaken.substring(0,4);
+        return currentYear;
     }
     
     /**
-     * @return the school
+     * @return the school (first two letters indicator)
      */
-    public String getSchool() {
-        return School;
+    public String getSchool() 
+    {
+    	school = sectionNumber.substring(0,2);
+        return school;
     }
 
     /**
      * @return the course object
      */
-    public Course getCourse() {
-        return Course;
+    public Course getCourse()
+    {
+        return course;
     }
 
-    public double getGradePoint() {
+    public double calculateGradePoint()
+    {
         Double numericalGrade;
-        switch (this.getLetterGrade()) {
+        switch (this.getLetterGrade())
+        {
             case "A+":
                 numericalGrade = 4.3;
                 break;
@@ -88,7 +99,13 @@ public class Grade {
             default:
                 return -1;
         }
-        return (numericalGrade * Course.getCourseCredit());
+       gradePoints = (numericalGrade * course.getCourseCredit());
+       return gradePoints;
+    }
+    
+    public double getGradePoint()
+    {
+    	return gradePoints;
     }
 
 }
