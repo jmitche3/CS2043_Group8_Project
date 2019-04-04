@@ -243,7 +243,7 @@ public class IODriver{
 			
 		}
 	}
-	public static void writeGlobal(int[] data,String[] names,String target){
+	public static void writeGlobal(int[] data,ArrayList<String> names,String target){
 		PrintWriter out;
 		
 		try{
