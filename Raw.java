@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Raw 
 {
     private Registrar registrar;
-    private ArrayList<ArrayList> rawData;
+    private ArrayList<ArrayList<Integer>> rawData;
     private Schema levelSchema;
 
     public Raw(Registrar registrarI)
@@ -22,7 +23,7 @@ public class Raw
         this.calcRaw(levelSchema);
     }
 
-    public ArrayList<ArrayList> getRawData()
+    public ArrayList<ArrayList<Integer>> getRawData()
     {
         return rawData;
     }
@@ -34,7 +35,7 @@ public class Raw
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
         Set<Course> uniqueCourses = registrar.getTranscripts().get(0).getCourseList();
-        ArrayList<Transcript> transcripts;
+        List<Transcript> transcripts = registrar.getTranscripts();
         DLevelSchema levelSchema = new DLevelSchema();
         for(Course course:uniqueCourses)
         {
@@ -45,7 +46,7 @@ public class Raw
             courseLevels.add(0);
             for(Transcript transcript:transcripts)
             {
-                ArrayList<Grade> gradeData = transcript.getGrades();
+                List<Grade> gradeData = transcript.getGrades();
                 for (Grade grade:gradeData)
                 {
                     if ((grade.getCourse()).getCourseName().equalsIgnoreCase(course.getCourseName()))
@@ -61,13 +62,12 @@ public class Raw
             }
             rawData.add(courseLevels);
         }
-        writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames, registrar.getFilePath() +"\\Raw.csv");
     }
-    
+
     private void calcRaw(Schema schema)
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Transcript> transcripts = registrar.getTranscripts();
+        List<Transcript> transcripts = registrar.getTranscripts();
         Set<Course> uniqueCourses = registrar.getTranscripts().get(0).getCourseList();
         for(Course course:uniqueCourses)
         {
@@ -92,7 +92,6 @@ public class Raw
             }
             rawData.add(courseLevels);
         }
-        writeRaw(uniqueCourses, rawData, schema.getLevelNames, registrar.getFilePath() +"\\Raw.csv");
     }
 
     public void setRegistrar(Registrar i)

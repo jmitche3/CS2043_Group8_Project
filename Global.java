@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Global
 {
-    private Int[] globalData;
+    private int[] globalData;
     private ArrayList<ArrayList<Integer>> data;
 
     public Global(ArrayList<ArrayList<Integer>> data)
     {
         this.data = data;
         int length = data.get(0).size();
-        this.globalData = new Int[length];
+        this.globalData = new int[length];
     }
 
     public void clacGlobal()
