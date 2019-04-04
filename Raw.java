@@ -13,6 +13,7 @@ public class Raw
         this.registrar = registrarI;
         this.rawData = new ArrayList<ArrayList<Integer>>();
         this.calcRaw();
+        this.levelSchema = new DLevelSchema();
     }
 
     public Raw(Registrar registrarI,Schema schema)
@@ -34,7 +35,7 @@ public class Raw
     private void calcRaw()
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
-        Set<Course> uniqueCourses = registrar.getTranscripts().get(0).getCourseList();
+        Set<Course> uniqueCourses = getCourseList();
         List<Transcript> transcripts = registrar.getTranscripts();
         DLevelSchema levelSchema = new DLevelSchema();
         for(Course course:uniqueCourses)
@@ -68,7 +69,7 @@ public class Raw
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
         List<Transcript> transcripts = registrar.getTranscripts();
-        Set<Course> uniqueCourses = registrar.getTranscripts().get(0).getCourseList();
+        Set<Course> uniqueCourses = getCourseList();
         for(Course course:uniqueCourses)
         {
             ArrayList<Integer> courseLevels = new ArrayList<Integer>();
@@ -84,14 +85,22 @@ public class Raw
                     if ((grade.getCourse()).getCourseName().equalsIgnoreCase(course.getCourseName()))
                     {
                         int index = schema.compareData(grade.getLetterGrade());
-                        int increment = courseLevels.get(index);
-                        increment++;
-                        courseLevels.set(index, increment);
+                        if(index != -1){
+                            int increment = courseLevels.get(index);
+                            increment++;
+                            courseLevels.set(index, increment);
+                        }
                     }
                 }
             }
             rawData.add(courseLevels);
         }
+    }
+
+    public void writeRawFile()
+    {
+        Set<Course> uniqueCourses = getCourseList();
+        writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames, registrar.getFilePath() +"\\Raw.csv");
     }
 
     public void setRegistrar(Registrar i)
