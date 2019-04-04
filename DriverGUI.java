@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import jdk.tools.jlink.builder.DefaultImageBuilder;
  
 public class DriverGUI extends Application implements EventHandler<ActionEvent>
 {
@@ -110,9 +111,15 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
 		if(event.getSource() == runButton)
 		{
 			Registrar currentRegistrar = new Registrar(currentPath);
+			DLevelSchema defaultSchema = new DLevelSchema();
 			currentRegistrar.loadTranscripts();
 			currentRegistrar.loadCourseAreas();
 			currentRegistrar.loadLevelSchema();
+			Raw rawDistribution = new Raw(currentRegistrar);
+			rawDistribution.writeRawFile();
+			Global globalDistribution = new GlobalDistribution(rawDistribution.getRawData(), defaultSchema);
+			globalDistribution.writeGlobalFile(currentRegistrar.getFilePath());
+
 		}
 		
 		if(event.getSource() == dirButton)

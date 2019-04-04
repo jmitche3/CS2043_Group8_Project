@@ -48,9 +48,9 @@ public class DLevelSchema implements Schema
         else if (Exceeds.contains(input))
         {
             return 3;
+        } else {
+            return -1; //Grade isnt in schema, meaning its not a letter grade.
         }
-        else
-        return -1; //Grade isnt in schema, meaning its not a letter grade.
     }
 
     public ArrayList<String> getLevelNames()
