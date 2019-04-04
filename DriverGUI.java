@@ -118,8 +118,8 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
 			Raw rawDistribution = new Raw(currentRegistrar);
 			rawDistribution.writeRawFile();
 			Global globalDistribution = new GlobalDistribution(rawDistribution.getRawData(), defaultSchema);
-			globalDistribution.printGlobal(currentRegistrar.getFilePath());
-			
+			globalDistribution.writeGlobalFile(currentRegistrar.getFilePath());
+
 		}
 		
 		if(event.getSource() == dirButton)
