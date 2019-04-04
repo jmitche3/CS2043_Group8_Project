@@ -29,10 +29,7 @@ public class Raw
         return rawData;
     }
 
-    //I made the calcRaw without a given schema
-
-
-    private void calcRaw()
+    private void calcRaw() //calculates raw without a schema
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
         Set<Course> uniqueCourses = getCourseList();
@@ -65,7 +62,7 @@ public class Raw
         }
     }
 
-    private void calcRaw(Schema schema)
+    private void calcRaw(Schema schema) //calculates raw with schema
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
         List<Transcript> transcripts = registrar.getTranscripts();
