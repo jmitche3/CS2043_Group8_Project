@@ -1,10 +1,10 @@
 import java.io.*;
 import java.util.*;
-
+//import org.apache.poi.ss.usermodel;
 
 public class IODriver{
 	
-	public static Transcript readTranscript(String target){
+	/*public static Transcript readTranscript(String target){
 		FileReader in;
 		Transcript student=new Transcript();
 		
@@ -24,6 +24,7 @@ public class IODriver{
 				//System.out.println(letGradeIn);
 				double valueIn=sc.nextDouble();
 				String termIn=sc.next();
+				Course tempCourse=readerAddCourse(courseIn,titleIn,valueIn);
 				Grade temp= new Grade(courseIn,sectionIn,titleIn,letGradeIn,valueIn,termIn);
 				
 				student.addGrade(temp);
@@ -33,6 +34,14 @@ public class IODriver{
 		}
 		return student;
 	}
+	
+	public static Course readerAddCourse(String courseIn,String titleIn,double valueIn){
+		for(Course c:getCourseList()){
+			if(c.getCourseName().equals(courseIn)){
+				return c;
+			}
+		}
+	}*/
 	
 	public static ArrayList<CourseArea> readArea(String target){
 		FileReader in;
@@ -179,7 +188,7 @@ public class IODriver{
 		return tempList;
 	}*/
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		Scanner sc=new Scanner(System.in);
 		String target=sc.nextLine();
 		//ArrayList<CourseEquivalent> student=readEquivs(target);
@@ -188,7 +197,7 @@ public class IODriver{
 		//for(CourseEquivalent area:student){
 			System.out.println(test);
 		//}
-	}
+	}*/
 	
 	public static void writeTranscript(Transcript student, String target){
 		PrintWriter out;
@@ -198,7 +207,7 @@ public class IODriver{
 			out=new PrintWriter(output);
 			
 			out.println(""+student.getID()+"  "+student.getProgram());
-			ArrayList grades=student.getGrades();
+			ArrayList<Grade> grades=student.getGrades();
 			for(Grade g : grades){
 				out.println(g);
 			}
@@ -212,7 +221,7 @@ public class IODriver{
 		
 	}*/
 	
-	public static void writeRaw(Set<Course> courses, ArrayList<ArrayList<int>> counts, ArrayList<String> scheme){
+	public static void writeRaw(Set<Course> courses, ArrayList<ArrayList<Integer>> counts, ArrayList<String> scheme,String target){
 		PrintWriter out;
 		
 		try{
@@ -257,7 +266,7 @@ public class IODriver{
 		
 	}
 	
-	public static void writeArea(ArrayList<ArrayList<int>> data, String[] areas, String[] levels, String target){
+	public static void writeArea(ArrayList<ArrayList<Integer>> data, String[] areas, String[] levels, String target){
 		PrintWriter out;
 		
 		try{
