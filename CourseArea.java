@@ -1,5 +1,3 @@
-package Group_Project;
-
 import java.util.ArrayList;
 
 class CourseArea

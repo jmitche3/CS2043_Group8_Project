@@ -63,7 +63,7 @@ public class Raw
         }
         writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames, registrar.getFilePath() +"\\Raw.csv");
     }
-7
+    
     private void calcRaw(Schema schema)
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
