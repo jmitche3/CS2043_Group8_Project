@@ -1,5 +1,3 @@
-package Group_Project;
-
 public class Grade {
     final private String letterGrade;
     final private String sectionNumber;

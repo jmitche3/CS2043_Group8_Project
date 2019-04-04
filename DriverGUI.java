@@ -1,5 +1,3 @@
-package Group_Project;
-
 import java.io.File;
 
 import javafx.application.Application;
