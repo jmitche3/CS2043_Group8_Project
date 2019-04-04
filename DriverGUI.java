@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import jdk.tools.jlink.builder.DefaultImageBuilder;
  
 public class DriverGUI extends Application implements EventHandler<ActionEvent>
 {
@@ -117,8 +116,8 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
 			currentRegistrar.loadLevelSchema();
 			Raw rawDistribution = new Raw(currentRegistrar);
 			rawDistribution.writeRawFile();
-			Global globalDistribution = new GlobalDistribution(rawDistribution.getRawData(), defaultSchema);
-			globalDistribution.writeGlobalFile(currentRegistrar.getFilePath());
+			GlobalDistribution globalDistribution = new GlobalDistribution(rawDistribution.getRawData(), defaultSchema);
+			globalDistribution.writeGlobalFile(currentRegistrar.getCurrentPath());
 
 		}
 		
