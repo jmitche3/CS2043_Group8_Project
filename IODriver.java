@@ -204,11 +204,15 @@ public class IODriver{
 			}
 			out.close();
 		}catch(IOException e){
-			//HANDLE
+			System.err.print(e);
 		}
 	}
 	
-	public static void writeRaw(Set<Course> courses, ArrayList<ArrayList<int>> counts, GradeSchema scheme){
+	/*public static void writeTranscriptExcel(Transcript student, String target){
+		
+	}*/
+	
+	public static void writeRaw(Set<Course> courses, ArrayList<ArrayList<int>> counts, ArrayList<String> scheme){
 		PrintWriter out;
 		
 		try{
@@ -216,7 +220,7 @@ public class IODriver{
 			out=new PrintWriter(output);
 			
 			out.print("Course");
-			for(String title : scheme.getNames()){
+			for(String title : scheme){
 				out.print(","+title);
 			}
 			for(int i=0;i<courses.size();i++){
@@ -226,6 +230,53 @@ public class IODriver{
 				}
 			}
 			out.close();
+		}catch(IOException e){
+			
+		}
+	}
+	public static void writeGlobal(int[] data,String[] names,String target){
+		PrintWriter out;
+		
+		try{
+			File output=new File(target);
+			out=new PrintWriter(output);
+			
+			out.print("Course");
+			for(String title : names){
+				out.print(","+title);
+			}
+			out.print("\n");
+			for(int i : data){
+				out.print(""+i+",");
+			}
+			out.print("\b");
+			out.close();
+		}catch(IOException e){
+			
+		}
+		
+	}
+	
+	public static void writeArea(ArrayList<ArrayList<int>> data, String[] areas, String[] levels, String target){
+		PrintWriter out;
+		
+		try{
+			File output=new File(target);
+			out=new PrintWriter(output);
+			
+			out.print("Area");
+			for(String title : levels){
+				out.print(","+title);
+			}
+			for(int i=0;i<areas.length;i++){
+				out.print("\n"+areas[i]);
+				for(int j : data.get(i)){
+					out.print(","+j);
+				}
+			}
+			out.close();
+		}catch(IOException e){
+			
 		}
 	}
 	
