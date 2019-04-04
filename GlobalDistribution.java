@@ -6,7 +6,7 @@ public class GlobalDistribution
     private ArrayList<ArrayList<Integer>> data;
     private Schema schema;
 
-    public Global(ArrayList<ArrayList<Integer>> data, Schema schema)
+    public GlobalDistribution(ArrayList<ArrayList<Integer>> data, Schema schema)
     {
         this.data = data;
         int length = data.get(0).size();
@@ -29,10 +29,11 @@ public class GlobalDistribution
     public int getTotal()
     {
         int total = 0;
-        for(i=0; i<globalData.length; i++)
+        for(int i=0; i<globalData.length; i++)
         {
             total += globalData[i];
         }
+        return total;
     }
 
     public int[] getGlobalData()
@@ -42,6 +43,6 @@ public class GlobalDistribution
 
     public void writeGlobalFile(String filepath)
     {
-        writeGlobal(globalData, schema.getLevelNames(), filepath +"\\global.csv");
+        IODriver.writeGlobal(globalData, schema.getLevelNames(), filepath +"\\global.csv");
     }
 }

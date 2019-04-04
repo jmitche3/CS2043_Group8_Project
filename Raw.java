@@ -32,7 +32,7 @@ public class Raw
     private void calcRaw() //calculates raw without a schema
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
-        Set<Course> uniqueCourses = getCourseList();
+        Set<Course> uniqueCourses = Transcript.getCourseList();
         List<Transcript> transcripts = registrar.getTranscripts();
         DLevelSchema levelSchema = new DLevelSchema();
         for(Course course:uniqueCourses)
@@ -66,7 +66,7 @@ public class Raw
     {
         this.rawData = new ArrayList<ArrayList<Integer>>();
         List<Transcript> transcripts = registrar.getTranscripts();
-        Set<Course> uniqueCourses = getCourseList();
+        Set<Course> uniqueCourses = Transcript.getCourseList();
         for(Course course:uniqueCourses)
         {
             ArrayList<Integer> courseLevels = new ArrayList<Integer>();
@@ -96,8 +96,8 @@ public class Raw
 
     public void writeRawFile()
     {
-        Set<Course> uniqueCourses = getCourseList();
-        IODriver.writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames, registrar.getFilePath() +"\\Raw.csv");
+        Set<Course> uniqueCourses = Transcript.getCourseList();
+        IODriver.writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames(), registrar.getCurrentPath() +"\\Raw.csv");
     }
 
     public void setRegistrar(Registrar i)
