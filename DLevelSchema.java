@@ -53,6 +53,11 @@ public class DLevelSchema implements Schema
         }
     }
 
+    public String getBinName(int binNumber)
+    {
+    	return this.LevelNames.get(binNumber);
+    }
+    
     public ArrayList<String> getLevelNames()
     {
         return LevelNames;

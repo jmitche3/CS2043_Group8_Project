@@ -1,9 +1,10 @@
+import java.util.List;
 import java.util.ArrayList;
 
 class CourseArea
 {
 	private String name;
-	private ArrayList<Course> courses;
+	private List<Course> courses = new ArrayList<Course>();
 	
 	public CourseArea(String nameIn)
 	{
@@ -18,5 +19,10 @@ class CourseArea
 	public String getName() 
 	{
 		return name;
+	}
+	
+	public boolean isCourseInArea(Course course)
+	{
+		return courses.contains(course);
 	}
 }

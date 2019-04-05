@@ -131,7 +131,7 @@ public class IODriver{
 		}
 		return tempList;
 	}
-	
+	/*
 	public static GradeSchema readGSchema(String target){
 		FileReader in;
 		GradeSchema temp=new GradeSchema();
@@ -149,7 +149,7 @@ public class IODriver{
 			//HANDLE
 		}
 		return temp;
-	}
+	}*
 	
 	public static RankSchema readRSchema(String target){
 		FileReader in;
@@ -233,7 +233,7 @@ public class IODriver{
 				out.print(","+title);
 			}
 			for(int i=0;i<courses.size();i++){
-				out.print("\n"+((Course)courses.toArray()[i]).getCourseName());
+				out.print("\n"+((Course)courses.toArray()[i]).getCourseCode());
 				for(int j:counts.get(i)){
 					out.print(","+j);
 				}
@@ -245,20 +245,28 @@ public class IODriver{
 	}
 	public static void writeGlobal(int[] data,ArrayList<String> names,String target){
 		PrintWriter out;
+		String line = "";
 		
 		try{
 			File output=new File(target);
 			out=new PrintWriter(output);
 			
-			out.print("Course");
 			for(String title : names){
-				out.print(","+title);
+				if(!line.isEmpty())
+					line += ",";
+				line += title;
 			}
+			out.print(line);
 			out.print("\n");
+			
+			line = "";
 			for(int i : data){
-				out.print(""+i+",");
+				if(!line.isEmpty())
+					line += ",";
+				line += i;
 			}
-			out.print("\b");
+			out.print(line);
+			out.print("\n");
 			out.close();
 		}catch(IOException e){
 			
