@@ -307,7 +307,7 @@ public class IODriver{
 			out.print("MasterList:");
 			for(Course course:data)
 			{
-				out.print("\n" +course.getCourseName());
+				out.print("\r\n" +course.getCourseName());
 			}
 
 			out.close();
