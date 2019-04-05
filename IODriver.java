@@ -296,5 +296,25 @@ public class IODriver{
 			
 		}
 	}
+
+	public static void writeMasterList(String target){
+		PrintWriter out;
+		
+		try{
+			File output=new File(target + "\\MasterList.txt");
+			out=new PrintWriter(output);
+			Set<Course> data = Transcript.getCourseList();
+			out.print("MasterList:");
+			for(Course course:data)
+			{
+				out.print("\r\n" +course.getCourseName());
+			}
+
+			out.close();
+
+		}catch(IOException e){
+			
+		}
+	}
 	
 }
