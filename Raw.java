@@ -97,7 +97,7 @@ public class Raw
     public void writeRawFile()
     {
         Set<Course> uniqueCourses = Transcript.getCourseList();
-        writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames(), registrar.getCurrentPath() +"\\Raw.csv");
+        IODriver.writeRaw(uniqueCourses, rawData, levelSchema.getLevelNames(), registrar.getCurrentPath() +"\\Raw.csv");
     }
 
     public void setRegistrar(Registrar i)

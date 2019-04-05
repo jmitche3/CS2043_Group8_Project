@@ -43,6 +43,6 @@ public class GlobalDistribution
 
     public void writeGlobalFile(String filepath)
     {
-        writeGlobal(globalData, schema.getLevelNames(), filepath +"\\global.csv");
+        IODriver.writeGlobal(globalData, schema.getLevelNames(), filepath +"\\global.csv");
     }
 }

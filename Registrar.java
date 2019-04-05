@@ -11,13 +11,15 @@ public class Registrar
 {
 	private String currentPath;
 	private ArrayList<Transcript> transcriptList = new ArrayList<Transcript>();
-	private File levelSchemaFile = new File(currentPath + "/LevelSchema.csv");
-	private File areasFile = new File(currentPath + "/Areas.csv");
+	private File levelSchemaFile = null;
+	private File areasFile = null;
 	private List<CourseArea> courseAreas = null;
 	
 	public Registrar(String pathIn) 
 	{
 		currentPath = pathIn;
+		levelSchemaFile = new File(currentPath + "/LevelSchema.csv");
+		areasFile = new File(currentPath + "/Areas.csv");
 	}
 
 	public void loadTranscripts() 
@@ -61,7 +63,7 @@ public class Registrar
 		int areaNum= 0;
 		ArrayList<CourseArea> areas = new ArrayList<CourseArea>();
 
-		try (BufferedReader br = Files.newBufferedReader(levelSchemaFile.toPath(), StandardCharsets.US_ASCII)) 
+		try (BufferedReader br = Files.newBufferedReader(areasFile.toPath(), StandardCharsets.US_ASCII)) 
 		{
 			String line = br.readLine(); 
 			
@@ -83,7 +85,9 @@ public class Registrar
 					for(int i = 0; i<courseAs.length; i++)
 					{
 						if(!courseAs[i].isEmpty())
+						{
 							areas.get(i).addCourse(courseAs[i]);
+						}
 					}
 				}
 
@@ -108,7 +112,7 @@ public class Registrar
 		Level currentLevel;
 		LevelSchema schema = new LevelSchema();
 		
-		try (BufferedReader br = Files.newBufferedReader(areasFile.toPath(), StandardCharsets.US_ASCII)) 
+		try (BufferedReader br = Files.newBufferedReader(levelSchemaFile.toPath(), StandardCharsets.US_ASCII)) 
 		{
 			String line = br.readLine(); 
 
@@ -150,6 +154,14 @@ public class Registrar
 	public List<CourseArea> getAreaList()
 	{
 		return courseAreas;
+	}
+	
+	public CourseArea getCourseAreaForCourse(Course course)
+	{
+		for(CourseArea courseArea : courseAreas)
+			if(courseArea.isCourseInArea(course))
+				return courseArea;
+		return null;
 	}
 
 }

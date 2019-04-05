@@ -46,5 +46,9 @@ public class Course
 		return (courseCode +" " +courseName +" " +courseCredit);
 	}
 	
-
+	@Override 
+	public int hashCode()
+	{
+		return courseCode.hashCode();
+	}
 }
