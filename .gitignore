@@ -1,0 +1,7 @@
+.settings
+bin
+.classpath
+.project
+*.class
+*.csv
+*.txt
