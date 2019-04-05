@@ -1,5 +1,3 @@
-package Group_Project;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,23 +27,36 @@ public class Transcript
 		String line = br.readLine(); 
 
 		while (line != null) 
-		{ 
-			gradeFields = line.split("\\s{2,}");
+		{
+			line = line.trim();
+			if(!line.isEmpty())
+			{
+				gradeFields = line.split("\\s{2,}");
+				
+				if(gradeFields.length >= 6)
+				{
+					// Fill in member variables of transcript.
+					courseNumber = gradeFields[0];
+					courseSection = gradeFields[1];
+					courseName = gradeFields[2];
+					letterGrade = gradeFields[3];
+					courseCreditHours = gradeFields[4];
+					courseTerm = gradeFields[5];
+					
+					course = getCourseByName(courseNumber);
+					
+					if(course == null)
+					{
+						course = new Course(courseNumber, courseName, courseCreditHours);
+						uniqueCourses.add(course);
+					}
+					
+					grade = new Grade(letterGrade, courseSection, courseTerm, course);
+					
+					transcript.grades.add(grade);
+				}
+			}
 			
-			// Fill in member variables of transcript.
-			courseNumber = gradeFields[0];
-			courseSection = gradeFields[1];
-			courseName = gradeFields[2];
-			letterGrade = gradeFields[3];
-			courseCreditHours = gradeFields[4];
-			courseTerm = gradeFields[5];
-			
-			course = new Course(courseNumber, courseName, courseCreditHours);
-			uniqueCourses.add(course);
-			grade = new Grade(letterGrade, courseSection, courseTerm, course);
-			
-			transcript.grades.add(grade);
-
 			line = br.readLine(); 
 		}
 
@@ -64,7 +75,7 @@ public class Transcript
 		// Find the one with the requested name
 		for(Course c : uniqueCourses)
 		{
-			if(c.getCourseName().equals(nameIn))
+			if(c.getCourseCode().equals(nameIn))
 			{
 				course = c;
 				break;

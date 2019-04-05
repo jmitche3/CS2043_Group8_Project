@@ -1,5 +1,3 @@
-package Group_Project;
-
 public class Level 
 {
 		private String level;

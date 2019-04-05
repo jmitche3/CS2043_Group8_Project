@@ -1,5 +1,3 @@
-package Group_Project;
-
 public class Course
 {
 	final private String courseCode;
@@ -48,5 +46,9 @@ public class Course
 		return (courseCode +" " +courseName +" " +courseCredit);
 	}
 	
-
+	@Override 
+	public int hashCode()
+	{
+		return courseCode.hashCode();
+	}
 }

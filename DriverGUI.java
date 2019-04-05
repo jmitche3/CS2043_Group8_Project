@@ -1,5 +1,3 @@
-package Group_Project;
-
 import java.io.File;
 
 import javafx.application.Application;
@@ -53,6 +51,7 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
 		runButton.setTranslateX(110);
 		runButton.setTranslateY(0);
 		runButton.setOnAction(this);
+		/*
 		runButton.setOnAction((new EventHandler<ActionEvent>() {
  
             @Override
@@ -91,7 +90,7 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
                 newWindow.show();
             }
         }));
-		
+		*/
 		dirButton= new Button("Select Directory");
 		parent.getChildren().add(dirButton);
 		dirButton.setTranslateX(180);
@@ -112,9 +111,20 @@ public class DriverGUI extends Application implements EventHandler<ActionEvent>
 		if(event.getSource() == runButton)
 		{
 			Registrar currentRegistrar = new Registrar(currentPath);
+			DLevelSchema defaultSchema = new DLevelSchema();
+			
 			currentRegistrar.loadTranscripts();
 			currentRegistrar.loadCourseAreas();
 			currentRegistrar.loadLevelSchema();
+
+			Raw rawDistribution = new Raw(currentRegistrar);
+			rawDistribution.writeRawFile();
+			
+			GlobalDistribution globalDistribution = new GlobalDistribution(rawDistribution.getRawData(), defaultSchema);
+			globalDistribution.writeGlobalFile(currentRegistrar.getCurrentPath());
+
+			Area areaDist = new Area(currentRegistrar);
+			areaDist.writeAreaFile();
 		}
 		
 		if(event.getSource() == dirButton)
