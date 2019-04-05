@@ -301,13 +301,13 @@ public class IODriver{
 		PrintWriter out;
 		
 		try{
-			File output=new File(target + "\\MasterList.csv");
+			File output=new File(target + "\\MasterList.txt");
 			out=new PrintWriter(output);
 			Set<Course> data = Transcript.getCourseList();
 			out.print("MasterList:");
 			for(Course course:data)
 			{
-				out.print("," +course.getCourseName());
+				out.print("\n" +course.getCourseName());
 			}
 
 			out.close();
